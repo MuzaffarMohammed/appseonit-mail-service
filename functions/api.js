@@ -1,11 +1,30 @@
 const express = require('express');
 const serverless = require('serverless-http');
 const nodemailer = require('nodemailer');
-
+var cors = require('cors');
 const app = express();
 const router = express.Router();
 const dotenv = require('dotenv');
 dotenv.config();
+
+var allowedOrigins = ['http://localhost:8888',
+  process.env.CLIENT_1,//Appseonit URL
+  process.env.CLIENT_2,//Mforce URL
+  process.env.CLIENT_3,//SecuPower URL
+];
+
+app.use(cors({
+    origin: function (origin, callback) {
+      // allow requests with no origin 
+      // (like mobile apps or curl requests)
+      if (!origin) return callback(null, true);
+      if (allowedOrigins.indexOf(origin) === -1) {
+        var msg = 'Appseonit CORS policy for this site does not allow access from the specified origin.';
+        return callback(new Error(msg), false);
+      }
+      return callback(null, true);
+    }
+  }));
 
 router.get("/", (req, res) => {
     res.json({
