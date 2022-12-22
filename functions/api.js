@@ -50,7 +50,6 @@ router.post('/send', (req, res) => {
       <h3>Message</h3>
       <p>${req.body.message}</p>
     `;
-    console.log("output : ", req.body)
     // create reusable transporter object using the default SMTP transport
     const obj = {
         host: process.env[`CLIENT_${req.body.clientId}_HOST`],
@@ -64,7 +63,6 @@ router.post('/send', (req, res) => {
             rejectUnauthorized: false
         }
     }
-    console.log("Obj : ", obj)
     let transporter = nodemailer.createTransport(obj);
 
     // setup email data with unicode symbols
