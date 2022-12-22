@@ -1,0 +1,25 @@
+{
+  "name": "appseonit-mail-service",
+  "version": "1.0.0",
+  "description": "appseonit-mail-service",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MuzaffarMohammed/appseonit-mail-service.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MuzaffarMohammed/appseonit-mail-service/issues"
+  },
+  "homepage": "https://github.com/MuzaffarMohammed/appseonit-mail-service#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "netlify-lambda": "^2.0.15",
+    "serverless-http": "^3.1.0"
+  }
+}
