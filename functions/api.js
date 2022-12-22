@@ -8,23 +8,23 @@ const dotenv = require('dotenv');
 dotenv.config();
 
 var allowedOrigins = ['http://localhost:8888',
-  process.env.CLIENT_1,//Appseonit URL
-  process.env.CLIENT_2,//Mforce URL
-  process.env.CLIENT_3,//SecuPower URL
+    process.env.CLIENT_1,//Appseonit URL
+    process.env.CLIENT_2,//Mforce URL
+    process.env.CLIENT_3,//SecuPower URL
 ];
 
 app.use(cors({
     origin: function (origin, callback) {
-      // allow requests with no origin 
-      // (like mobile apps or curl requests)
-      if (!origin) return callback(null, true);
-      if (allowedOrigins.indexOf(origin) === -1) {
-        var msg = 'Appseonit CORS policy for this site does not allow access from the specified origin.';
-        return callback(new Error(msg), false);
-      }
-      return callback(null, true);
+        // allow requests with no origin 
+        // (like mobile apps or curl requests)
+        if (!origin) return callback(null, true);
+        if (allowedOrigins.indexOf(origin) === -1) {
+            var msg = 'Appseonit CORS policy for this site does not allow access from the specified origin.';
+            return callback(new Error(msg), false);
+        }
+        return callback(null, true);
     }
-  }));
+}));
 
 router.get("/", (req, res) => {
     res.json({
@@ -45,9 +45,10 @@ router.post('/send', (req, res) => {
       <h3>Message</h3>
       <p>${req.body.message}</p>
     `;
-
+    console.log("output : ", req.body.name)
+    console.log('Process: ', process.env.CLIENT_1)
     // create reusable transporter object using the default SMTP transport
-    let transporter = nodemailer.createTransport({
+    const obj = {
         host: process.env[`CLIENT_${req.body.clientId}_HOST`],
         port: process.env[`CLIENT_${req.body.clientId}_PORT`],
         secure: true, // true for 465, false for other ports
@@ -58,7 +59,9 @@ router.post('/send', (req, res) => {
         tls: {
             rejectUnauthorized: false
         }
-    });
+    }
+    console.log("Obj : ", obj)
+    let transporter = nodemailer.createTransport(obj);
 
     // setup email data with unicode symbols
     let mailOptions = {
