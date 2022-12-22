@@ -18,8 +18,10 @@
   },
   "homepage": "https://github.com/MuzaffarMohammed/appseonit-mail-service#readme",
   "dependencies": {
+    "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "netlify-lambda": "^2.0.15",
+    "nodemailer": "^6.8.0",
     "serverless-http": "^3.1.0"
   }
 }
