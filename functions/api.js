@@ -1,6 +1,7 @@
 const express = require('express');
 const serverless = require('serverless-http');
 const nodemailer = require('nodemailer');
+const bodyParser = require('body-parser');
 var cors = require('cors');
 const app = express();
 const router = express.Router();
@@ -26,6 +27,10 @@ app.use(cors({
     }
 }));
 
+// Body Parser Middleware
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+
 router.get("/", (req, res) => {
     res.json({
         message: "This is Appseonit Technologies Private Limited Intellectual Property, any kind of hampering or causing trouble by anyone will be subjected to legal terms!"
@@ -45,8 +50,7 @@ router.post('/send', (req, res) => {
       <h3>Message</h3>
       <p>${req.body.message}</p>
     `;
-    console.log("output : ", req.body.name)
-    console.log('Process: ', process.env.CLIENT_1)
+    console.log("output : ", req.body)
     // create reusable transporter object using the default SMTP transport
     const obj = {
         host: process.env[`CLIENT_${req.body.clientId}_HOST`],
