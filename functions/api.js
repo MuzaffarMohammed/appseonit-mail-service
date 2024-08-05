@@ -13,6 +13,7 @@ var allowedOrigins = ['http://localhost:8888',
     process.env.CLIENT_2,//Mforce URL
     process.env.CLIENT_3,//SecuPower URL
     process.env.CLIENT_4,//Infinity Bridge HVAC URL
+    process.env.CLIENT_5,//KFM Cart URL
 ];
 
 app.use(cors({
